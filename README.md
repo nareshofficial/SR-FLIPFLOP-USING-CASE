@@ -34,15 +34,49 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **Procedure**
 
-/* write all the steps invloved */
+/*1.Type the program in Quartus software.
+
+2.Compile and run the program.
+
+3.Generate the RTL schematic and save the logic diagram.
+
+4.Create nodes for inputs and outputs to generate the timing diagram.
+
+5.For different input combinations generate the timing diagram.  */
 
 **PROGRAM**
 
 /* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
 */
+```
+ module EXP_6(q, q_bar, s,r, clk, reset);//SR Flip Flop Behavioral Level using ‘case’ 
+  input s,r,clk, reset;
+  output reg q;
+  output q_bar;
+ 
+  always@(posedge clk) begin // for synchronous reset
+    if(!reset)       
+			q <= 0;
+    else 
+  begin
+      case({s,r})       
+	     2'b00: q <= q;    // No change
+        2'b01:q<=1'b0;   // Write logic for reset
+        2'b10:q<=1'b1;   // Write logic for set
+        2'b11:q<=1'bx;   // Write logic for Invalid state
+      endcase
+    end
+  end
+  assign q_bar = ~q;
+endmodule
+```
+
 
 **RTL LOGIC FOR FLIPFLOPS**
+![324699238-37761f8e-c25b-46af-8e9a-97d22d841f92](https://github.com/nareshofficial/SR-FLIPFLOP-USING-CASE/assets/155141830/0afa1b97-5ddd-4747-bee1-b60536fd05a3)
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
+![324876762-2903c58f-87b7-4fb6-bbbb-04a4998adc7b](https://github.com/nareshofficial/SR-FLIPFLOP-USING-CASE/assets/155141830/a2390e37-3a2a-494c-bfd7-a49ec2ccdc49)
 
 **RESULTS**
+The observation of the simulation results and confirm the successful execution of the program.
